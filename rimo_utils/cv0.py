@@ -1,5 +1,6 @@
 import logging
 
+import cv2
 from cv2 import *
 import numpy as np
 
@@ -20,7 +21,7 @@ def read(img_path):
 
 def write(img, img_path, param=None):
     with open(img_path, 'wb') as f:
-        if img.dtype in (np.float64, np.float32, np.float):
+        if img.dtype in (np.float64, np.float32):
             img = (img * 255).astype(np.uint8)
         if param:
             _, data = cv2.imencode(img_path, img, param)
