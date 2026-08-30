@@ -10,12 +10,13 @@ from cefpython3 import cefpython as cef
 ld_library_path = os.environ.get("LD_LIBRARY_PATH")
 
 
-def group(url, icon, title, size):
+def group(url, icon, title, size, **settings):
     icon = str(icon)  # pathlib -> str
     sys.excepthook = ExceptHook
-    cef.Initialize(settings={}, commandLineSwitches={
+    cef.Initialize(settings=settings, commandLineSwitches={
         'autoplay-policy': 'no-user-gesture-required',
-        'lang': 'zh-CN'
+        'lang': 'zh-CN',
+        'disable-webrtc': '',
     })
     app = CefApp(url, icon, title, size)
     return app, app.frame.browser

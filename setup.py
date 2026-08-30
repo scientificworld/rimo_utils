@@ -3,7 +3,7 @@ import setuptools
 
 setuptools.setup(
     name='rimo_utils',
-    version='1.8.1',
+    version='1.9.0',
     author='RimoChan',
     author_email='the@librian.net',
     description='RimoChan util.',

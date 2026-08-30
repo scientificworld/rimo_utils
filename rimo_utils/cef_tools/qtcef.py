@@ -18,20 +18,17 @@ ld_library_path = os.environ.get("LD_LIBRARY_PATH")
 from cefpython3 import cefpython as cef
 
 
-def group(url, icon, title, size):
+def group(url, icon, title, size, **settings):
     sys.excepthook = ExceptHook
-    settings = {}
     if WINDOWS:
         settings["external_message_pump"] = True
     elif MAC:
-        # Issue #442 requires enabling message pump on Mac
-        # in Qt example. Calling cef.DoMessageLoopWork in a timer
-        # doesn't work anymore.
         settings["external_message_pump"] = True
     cef.Initialize(settings=settings,
                    commandLineSwitches={
-                       "autoplay-policy": "no-user-gesture-required",
-                       "lang": 'zh-CN'
+                        'autoplay-policy': 'no-user-gesture-required',
+                        'lang': 'zh-CN',
+                        'disable-webrtc': '',
                    })
     app = CefApp(url, icon, title, size)
     return app, app.frame.browser
